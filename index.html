@@ -3,32 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Piggy Tracker</title>
+    <title>Little Piggy Tracker - the tracker that runs on everything and your grandparents toaster</title>
+    <link rel="icon" href="pics/littlepiggytracker.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dark-mode.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+            }
+              // Fetch the latest release from GitHub API
+      fetch('https://api.github.com/repos/djdiskmachine/LittleGPTracker/releases/latest')
+          .then(response => response.json())
+          .then(data => {
+              const releaseSection = document.getElementById('releases');
+              const releaseInfo = `
+                <h3>${data.name}</h3>
+                <p style="white-space: pre-wrap;">${data.body}</p>
+                <a href="${data.html_url}" target="_blank">Get it for your platform here!</a>
+              `;
+              releaseSection.innerHTML += releaseInfo;
+          })
+          .catch(error => console.error('Error fetching release info:', error));
+    });
+</script>
 </head>
 <body>
     <header>
+        <img src="./pics/littlepiggytracker_tsp.png" alt="Little Piggy Tracker Logo" class="logo">
         <h1>Little Piggy Tracker</h1>
         <nav>
             <ul>
                 <li><a href="#releases">Releases</a></li>
                 <li><a href="#documentation">Documentation</a></li>
+                <li><a href="#about">What is Little Piggy Tracker?</a></li>
                 <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#tuneage">Tuneage</a></li>
             </ul>
         </nav>
     </header>
     <main>
+        <section id="about">
+            <h2>What is Little Piggy Tracker?</h2>
+            <p>Little Piggy Tracker (aka LGPT) is a <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software"> FLOSS</a>, cross-platform music tracker that runs on many a handheld and desktop OS. It features an 8 channel tracker interface, 16bit stereo samples and MIDI support.
+                <br>Feel free to <a href="https://github.com/djdiskmachine/LittleGPTracker/fork" target="_blank">contribute</a>!
+                <br>Feeling <a href="https://github.com/djdiskmachine/LittleGPTracker/fork" target="_blank">lucky</a>? Maybe someone else will find your feature request as vital as you do!</p>
+            <p>For more detailed information, please visit the <a href="https://github.com/djdiskmachine/LittleGPTracker/blob/master/docs/wiki/What-is-LittleGPTracker.md" target="_blank">What is LittleGPTracker</a> document.</p>
+        </section>
         <section id="releases">
             <h2>Software Releases</h2>
-            <p>Latest versions of Little Piggy Tracker.</p>
+            <p>Little Piggy Tracker, now with features!</p>
         </section>
         <section id="documentation">
             <h2>Documentation</h2>
-            <p>Comprehensive guides and manuals.</p>
+            <p>Unbelievably good guides and manuals.</p>
+            <ul>
+                <li><a href="https://github.com/djdiskmachine/LittleGPTracker/blob/master/docs/wiki/What-is-LittleGPTracker.md" target="_blank">What is LittleGPTracker</a></li>
+                <li><a href="https://github.com/djdiskmachine/LittleGPTracker/blob/master/docs/wiki/config_xml.md" target="_blank">Config XML</a></li>
+                <li><a href="https://github.com/djdiskmachine/LittleGPTracker/blob/master/docs/wiki/tips_and_tricks.md" target="_blank">Tips and Tricks</a></li>
+            </ul>
         </section>
         <section id="tutorials">
             <h2>Tutorials</h2>
-            <p>Step-by-step tutorials to get you started.</p>
+            <p>Dial your radio station to Youtube to get started!</p>
+            <div class="video-container">
+                <div class="video-column">
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/6CQ4dfvEvd0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/_IDQZkzc9sQ&t=72s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-column">
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/NHEUVQPlquo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        <section id="tuneage">
+            <h2>Tuneage!</h2>
+            <p>Get ready to be blown away by all of the crazy bangers</p>
+            <div class="video-container">
+                <div class="video-column">
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/HFd91rwYArA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-column">
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/videoseries?list=PLDJjtc_eSJfnLb5IKri4MHHGfda3AqRRO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-column">
+                    <iframe width="300" height="200" src="https://www.youtube.com/embed/IedfXvbhwYE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
         </section>
     </main>
     <footer>

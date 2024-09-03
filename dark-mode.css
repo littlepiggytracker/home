@@ -1,0 +1,46 @@
+/* dark-mode.css */
+body.dark-mode {
+    background-color: #1D0A1F; /* Background color */
+    color: #F5EBFF; /* Text color */
+}
+
+header.dark-mode {
+    background-color: #1D0A1F; /* Background color */
+    color: #F5EBFF; /* Text color */
+}
+
+footer.dark-mode {
+    background-color: #1D0A1F; /* Background color */
+    color: #F5EBFF; /* Text color */
+}
+
+nav ul li a.dark-mode {
+    color: #1D0A1F; /* Text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1D0A1F; /* Highlight color 1 */
+}
+
+a {
+    color: #8d0253; /* Highlight color 2 */
+}
+p {
+    color: #1D0A1F; /* Highlight color 2 */
+}
+
+a:hover {
+    color: #e100ff; /* Cursor color */
+}
+section {
+    background-color: #BA28F9; /* Same background color as "What is Little Piggy Tracker?" section */
+}
+
+section {
+    border: 1px solid #A55B8F; /* Alt chain color1 */
+}
+
+section:nth-child(even) {
+    border: 1px solid #853B6F; /* Alt chain color2 */
+}
+
