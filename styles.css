@@ -18,29 +18,52 @@ body {
 header {
     background-color: rgba(51, 51, 51, 0.9); /* Slightly transparent background */
     color: #fff;
-    padding: 10px 0;
+    padding: 5px; /* Compact padding */
     text-align: center;
     position: fixed; /* Fix the header to the top */
     top: 0; /* Ensure it starts from the top edge */
     left: 0; /* Ensure it starts from the left edge */
     right: 0; /* Ensure it extends to the right edge */
-    width: 100%; /* Extend to full width */
-    z-index: 1000; 
+    width: 100vw; /* Extend to full width */
+    z-index: 1000;
+    box-sizing: border-box; /* Include padding in the width calculation */
+    display: flex;
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: center; /* Center the content horizontally */
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
+header img.logo {
+    max-width: 100%; /* Ensure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 0px; /* Reduce space between the image and the heading */
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+header h1 {
+    margin: 0px 0; /* Reduce space between the heading and the nav */
+    font-size: 1.5rem; /* Adjust font size if necessary */
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
+header nav {
+    margin-top: 0px; /* Reduce space between the heading and the navigation */
+    padding: 0; /* Remove any default padding */
+}
+
+header nav ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    gap: 15px; /* Control the spacing between nav items */
+}
+
+header nav ul li {
+    display: inline; /* Display items inline */
+}
+
+header nav ul li a {
+    color: #fff; /* White text color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1rem; /* Adjust font size if needed */
 }
 
 main {
@@ -66,11 +89,10 @@ footer {
     padding: 10px 0;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     left: 0; /* Ensure it starts from the left edge */
     right: 0; /* Ensure it extends to the right edge */
-    width: 100%; /* Extend to full width */
     z-index: 1000; /* Ensure the footer is on top */
 
 }
@@ -78,6 +100,7 @@ footer {
 footer p {
     margin: 0;
 }
+
 .logo {
     width: 100px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
@@ -97,6 +120,9 @@ body.dark-mode nav ul li a {
     display: flex;
     justify-content: flex-start; /* Align columns closer together */
     gap: 10px; /* Decrease space between columns */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    max-width: 100%; /* Ensure the container width doesn't exceed the viewport */
+    scroll-behavior: smooth; /* Optional: Smooth scrolling */
 }
 
 .video-column {
@@ -104,3 +130,4 @@ body.dark-mode nav ul li a {
     flex-direction: column;
     gap: 20px; /* Add space between videos */
 }
+
