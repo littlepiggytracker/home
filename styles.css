@@ -103,23 +103,16 @@ body.dark-mode nav ul li a {
     color: inherit;
 }
 
-.container {
-    display: flex;
-    align-items: left;
-}
-body.dark-mode header,
-body.dark-mode footer,
-body.dark-mode nav ul li a {
-    background-color: inherit;
-    color: inherit;
-}
 .video-container {
     display: flex;
     justify-content: flex-start;
     gap: 10px;
 }
-.video-column {
+.video-container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+    max-width: 100%;
+    scroll-behavior: smooth;
 }
