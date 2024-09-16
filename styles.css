@@ -10,78 +10,68 @@ body {
     background-image: 
         url('./pics/littlepiggytracker_outl.png'),
         url('./pics/littlepiggytracker_outl_inv.png');
-        background-size: 200px 200px, 200px 200px; /* Size of the images */
-        background-position: 0 0, 100px 100px; /* Positioning the images */
-        background-repeat: repeat, repeat; /* Repeat the images */
+        background-size: 200px 200px, 200px 200px;
+        background-position: 0 0, 100px 100px;
+        background-repeat: repeat, repeat;
     }
-
-header {
-    background-color: rgba(51, 51, 51, 0.9); /* Slightly transparent background */
+    header {
+    background-color: rgba(51, 51, 51, 0.9);
     color: #fff;
-    padding: 5px; /* Compact padding */
+    padding: 5px;
     text-align: center;
-    position: fixed; /* Fix the header to the top */
-    top: 0; /* Ensure it starts from the top edge */
-    left: 0; /* Ensure it starts from the left edge */
-    right: 0; /* Ensure it extends to the right edge */
-    width: 100vw; /* Extend to full width */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
     z-index: 1000;
-    box-sizing: border-box; /* Include padding in the width calculation */
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Stack the image and text vertically */
-    align-items: center; /* Center the content horizontally */
+    flex-direction: column;
+    align-items: center;
 }
-
 header img.logo {
-    max-width: 100%; /* Ensure the image is responsive */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 0px; /* Reduce space between the image and the heading */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0px;
 }
-
 header h1 {
-    margin: 0px 0; /* Reduce space between the heading and the nav */
-    font-size: 1.5rem; /* Adjust font size if necessary */
+    margin: 0px 0;
+    font-size: 1.5rem;
 }
-
 header nav {
-    margin-top: 0px; /* Reduce space between the heading and the navigation */
-    padding: 0; /* Remove any default padding */
+    margin-top: 0px;
+    padding: 0;
 }
-
 header nav ul {
-    list-style: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    gap: 15px; /* Control the spacing between nav items */
+    gap: 15px;
 }
-
 header nav ul li {
-    display: inline; /* Display items inline */
+    display: inline;
 }
-
 header nav ul li a {
-    color: #fff; /* White text color for links */
-    text-decoration: none; /* Remove underline from links */
-    font-size: 1rem; /* Adjust font size if needed */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
 }
-
 main {
     padding: 20px;
     width: 90%;
     max-width: 1200px;
-    margin: 80px auto 0; /* Add margin to avoid overlap with fixed header */
-    margin-top: 250px; /* Add margin to avoid overlap with fixed header */
+    margin: 80px auto 0;
+    margin-top: 250px;
 }
-
 section {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: #A55B8F; /* Same background color as "What is Little Piggy Tracker?" section */
+    background-color: #A55B8F;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
-
 footer {
     background-color: #333;
     color: #fff;
@@ -91,24 +81,21 @@ footer {
     bottom: 0;
     width: 100vw;
     margin: 0 auto;
-    left: 0; /* Ensure it starts from the left edge */
-    right: 0; /* Ensure it extends to the right edge */
-    z-index: 1000; /* Ensure the footer is on top */
-
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
-
 footer p {
     margin: 0;
 }
-
 .logo {
-    width: 100px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0 auto;
-    display: block;
+    width: 50px;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-/* Ensure dark mode styles are applied correctly */
 body.dark-mode header,
 body.dark-mode footer,
 body.dark-mode nav ul li a {
@@ -116,18 +103,23 @@ body.dark-mode nav ul li a {
     color: inherit;
 }
 
+.container {
+    display: flex;
+    align-items: left;
+}
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode nav ul li a {
+    background-color: inherit;
+    color: inherit;
+}
 .video-container {
     display: flex;
-    justify-content: flex-start; /* Align columns closer together */
-    gap: 10px; /* Decrease space between columns */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    max-width: 100%; /* Ensure the container width doesn't exceed the viewport */
-    scroll-behavior: smooth; /* Optional: Smooth scrolling */
+    justify-content: flex-start;
+    gap: 10px;
 }
-
 .video-column {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Add space between videos */
+    gap: 20px;
 }
-

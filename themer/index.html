@@ -1,0 +1,391 @@
+<!--
+  From: https://www.eyecon.ro/colorpicker/#download 
+  Originally: http://poyo.co/lgpt
+  Modified by: https://github.com/ploupipoulpi
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LGPT color themer</title>   
+    <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/colorpicker.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+        
+        var values = {
+            "bg":"1D0A1F",
+            "sn":"F5EBFF",
+            "rw":"B750D1",
+            "cs":"FF00DD",
+            "se":"A55B8F",
+            "s0":"853B6F",
+            "cc":"FF00DD",
+            "r1":"BA28F9",
+            "r2":"FF00FF"
+        };
+
+        var hash = window.location.hash.replace('#', '').split('&');
+        var ret = {};
+        values.title = "untitled";
+
+        for (var x = 0; x < hash.length; x++) {
+            var itemArray = hash[x].split('=');
+            ret[itemArray[0]] = itemArray[1];
+        }
+
+        var testset = function(id){
+          if (ret[id] !== undefined){
+            values[id] = ret[id];
+          }
+        }
+
+        testset("bg");
+        testset("sn");
+        testset("rw");
+        testset("cs");
+        testset("se");
+        testset("s0");
+        testset("cc");
+        testset("r1");
+        testset("r2");
+        testset("title");
+
+        var $bg    = $("#bg");
+        var $sn    = $("#sn");
+        var $rw    = $("#rw");
+        var $cs    = $("#cs");
+        var $se    = $("#se");
+        var $s0    = $("#s0");
+        var $cc    = $("#cc");
+        var $r1    = $("#r1");
+        var $r2    = $("#r2");
+        var $title = $("#title");
+        var $titleinput = $("#titleinput");
+
+        var currentElement;
+
+        if (values.title !== "untitled") {
+          var val = decodeURIComponent(values.title).replace(/\+/g, ' ');
+          values.title = val;
+          $title.text(val);
+          $("#txt").attr("value", val);
+        }
+
+        $title.bind("click", function(){
+          $title.hide();
+          $titleinput.show();
+        });
+
+        $titleinput.submit(function(e){
+          e.preventDefault();
+          console.log(e);
+          var val = $("#titleinput input").val();
+          $title.text(val).show();
+          $("#txt").attr("value", val);
+          $titleinput.hide();
+          $title.show();
+          values.title = val;
+          window.location.hash = $.param(values);
+        });
+
+        $("#colorpickers").submit(function(e){
+          e.preventDefault();
+        });
+
+        var before = function(){
+          $(this).ColorPickerSetColor(this.value);
+          currentElement = this;
+        }
+
+        var onchange = function(hsb, hex, rgb){
+          values[$(currentElement).attr("id")] = hex.toUpperCase();
+          update();
+        }
+
+        $("#colorpickers input").ColorPicker({onChange:onchange, onBeforeShow:before});
+
+        function update(){
+          //hex values
+          var bgh  =  "#"+values.bg;
+          var snh  =  "#"+values.sn;
+          var rwh  =  "#"+values.rw;
+          var csh  =  "#"+values.cs;
+          var seh  =  "#"+values.se;
+          var s0h  =  "#"+values.s0;
+          var cch  =  "#"+values.cc;
+          var r1h  =  "#"+values.r1;
+          var r2h  =  "#"+values.r2;
+
+          $(".bgtxt").css({color:bgh});
+          $(".sntxt").css({color:snh});
+          $(".rwtxt").css({color:rwh});
+          $(".cstxt").css({color:csh});
+          $(".setxt").css({color:seh});
+          $(".s0txt").css({color:s0h});
+          $(".cctxt").css({color:cch});
+          $(".r1txt").css({color:r1h});
+          $(".r2txt").css({color:r2h});
+          $(".bgback").css({"background-color":bgh});
+          $(".snback").css({"background-color":snh});
+          $(".rwback").css({"background-color":rwh});
+          $(".csback").css({"background-color":csh});
+          $(".seback").css({"background-color":seh});
+          $(".s0back").css({"background-color":s0h});
+          $(".ccback").css({"background-color":cch});
+          $(".r1back").css({"background-color":r1h});
+          $(".r2back").css({"background-color":r2h});
+
+          //set input vals
+          $bg.val(bgh);
+          $sn.val(snh);
+          $rw.val(rwh);
+          $cs.val(csh);
+          $se.val(seh);
+          $s0.val(s0h);
+          $cc.val(cch);
+          $r1.val(r1h);
+          $r2.val(r2h);
+
+          var txt = '<BACKGROUND value="'+values.bg+'" />\n'+
+                    '<FOREGROUND value="'+values.sn+'" />\n'+
+                    '<HICOLOR1 value="'+values.rw+'" />\n'+
+                    '<HICOLOR2 value="'+values.cs+'" />\n'+
+                    '<SONGVIEW_FE value="'+values.se+'" />\n'+
+                    '<SONGVIEW_00 value="'+values.s0+'" />\n'+
+                    '<CURSORCOLOR value="'+values.cc+'" />\n'+
+                    '<ROWCOLOR1 value="'+values.r1+'" />\n'+
+                    '<ROWCOLOR2 value="'+values.r2+'" />\n';
+
+          $("textarea").val(txt);
+
+          window.location.hash = $.param(values);
+        };
+
+        var parsecode = function(str){
+         var arr = str.split("\"");
+          if(arr.length > 18){
+            values = {
+              "bg": arr[1],
+              "sn": arr[3],
+              "rw": arr[5],
+              "cs": arr[7],
+              "se": arr[9],
+              "s0": arr[11],
+              "cc": arr[13],
+              "r1": arr[15],
+              "r2": arr[17]
+            };
+            update();
+          }
+        }
+
+        $("textarea").bind("paste", function(){
+          console.log($(this).val())
+          parsecode($(this).val());
+        });
+        $("textarea").bind("keyup", function(){
+          console.log($(this).val())
+          parsecode($(this).val());
+        });
+        update();
+      });
+</script>
+<style type="text/css">
+  body{
+    width: 960px;
+    margin: 10px auto;
+    font-family: sans-serif;
+    background-image: 
+        url('../pics/littlepiggytracker_outl.png'),
+        url('../pics/littlepiggytracker_outl_inv.png');
+        background-size: 10px 10px, 10px 10px;
+        background-position: 0 0, 4px 7px;
+        background-repeat: repeat, repeat;
+        background-color:rgb(173, 252, 252);
+  }
+  #inputs {
+    float: left;
+  }
+
+  .title{
+    display: inline-block;
+    width: 100px;
+    border-right: 1px solid #ccc;
+    margin: 0 10px;
+    padding: 5px;
+  }
+
+  #noninputs{
+    float: left;
+  }
+
+  #visual{
+    height: 400px;
+    width: 600px;
+  }
+
+  textarea{
+    width: 100%;
+    height: 150px;
+  }
+  h1, h2{
+   text-align: center;
+  }
+  h1 span{
+    border-radius: 5px;
+    padding: 3px;
+  }
+  h2{
+    margin: 0 auto;
+    font-size: 28px;
+    width: 600px;
+  }
+
+ .box{
+   display: inline-block;
+   height: 20px;
+    margin: 0px 10px -8px 0px;
+   width: 20px;
+   padding: 3px
+ }
+
+ pre{
+  font-weight: bold;
+  line-height: 1em;
+ }
+ .main{
+  position: relative;
+  overflow: hidden;
+  height: 30em;
+ }
+ .menu{
+  position: absolute;
+  left: 0;
+  top: 2em;
+ }
+
+ .note{
+  position: absolute;
+  bottom: 0;
+  height: 3em;
+ }
+
+ .n1{
+ left: 64px;
+ }
+ .n2{
+ left: 88px;
+ }
+ .n3{
+ left: 112px;
+ }
+ .n4{
+ left: 137px;
+ }
+ .n5{
+  left: 160px;
+ }
+ .n6{
+ left: 184px;
+ }
+ .n7{
+ left: 208px;
+ }
+ .n8{
+ left: 233px;
+ }
+ #titleinput{
+  display: none;
+  text-align: center;
+ }
+
+</style>
+</head>
+<body>
+  <h1><span class="bgtxt rwback">Little</span>
+      <span class="sntxt csback">Piggy</span>
+      <span class="rwtxt bgback">Tracker</span>
+      <span class="cstxt snback">Themer</span></h1>
+  <h2 id="title">Click to set title</h2>
+  <form id="titleinput">
+    <input type="text" id="txt" value="Click to set title" />
+    <input type="submit" value="save" />
+  </form>
+  <div id="inputs">
+    <h3>
+    Select box to change color.
+    </h3>
+    <form id="colorpickers">
+      <span class="title">Background:  </span><span class="bgback box"></span><input type="text" id="bg" class="text" name="background" value="" /><br/>
+      <span class="title">Foreground:  </span><span class="snback box"></span><input type="text" id="sn" class="text" name="song" value="" /><br/>
+      <span class="title">Row Count:   </span><span class="rwback box"></span><input type="text" id="rw" class="text" name="row" value="" /><br/>
+      <span class="title">Cursor:      </span><span class="csback box"></span><input type="text" id="cs" class="text" name="cursor" value="" /><br/>
+      <span class="title">Songview FE: </span><span class="seback box"></span><input type="text" id="se" class="text" name="songview_fe" value="" /><br/>
+      <span class="title">Songview 00: </span><span class="s0back box"></span><input type="text" id="s0" class="text" name="songview_00" value="" /><br/>
+      <span class="title">Cursor Color:</span><span class="ccback box"></span><input type="text" id="cc" class="text" name="cursorcolor" value="" /><br/>
+      <span class="title">Row Color 1: </span><span class="r1back box"></span><input type="text" id="r1" class="text" name="rowcolor1" value="" /><br/>
+      <span class="title">Row Color 2: </span><span class="r2back box"></span><input type="text" id="r2" class="text" name="rowcolor2" value="" /><br/>
+    </form>
+  </div>
+  <div id="noninputs">
+    <div id="visual">
+<pre class="main bgback sntxt">
+Song - BETA
+
+
+     <span class="r2txt">00</span> -- 05 12 12 <span class="bgtext s0txt">00</span> -- -- --  ----
+     <span class="r2txt">01</span> -- 01 0F 0C 01 -- -- --  000%
+     <span class="r2txt">02</span> -- 01 02 08 09 -- -- --  100
+     <span class="r2txt">03</span> -- 05 <span class="bgtext s0txt">00</span> 04 0D -- -- --  00:14
+     <span class="r1txt">04</span> -- 07 03 15 10 -- -- --
+     <span class="r1txt">05</span> --<span class="bgtext cctxt">></span><span class="rntxt">14</span><span class="bgtext cctxt">></span><span class="rntxt">11</span><span class="bgtext cctxt">></span><span class="rntxt">37</span><span class="bgtext cctxt">></span><span class="rntxt">03</span> -- -- --
+     <span class="r1txt">06</span> -- 17 18 11 1E -- -- --
+     <span class="r1txt">07</span> -- 22 <span class="bgtext setxt">FE</span> 11 21 -- -- --
+     <span class="r2txt">08</span> -- 14 13 11 1E <span class="bgtext bgtxt csback">--</span> -- --
+     <span class="r2txt">09</span> -- 01 02 0C 0E -- -- --
+     <span class="r2txt">0A</span> -- 01 06 08 0E -- -- --
+     <span class="r2txt">0B</span> -- 05 02 04 0E -- -- --
+     <span class="r1txt">0C</span> -- 07 1A <span class="bgtext s0txt">00</span> 0E -- -- --
+     <span class="r1txt">0D</span> -- <span class="bgtext setxt">FE</span> 37 12 25 -- -- --
+     <span class="r1txt">0E</span> -- 22 24 2D 2B -- -- --
+     <span class="r1txt">0F</span> -- 2A 24 27 25 -- -- --
+     <span class="r2txt">10</span> -- 2A 24 2E 25 -- -- --
+     <span class="r2txt">11</span> -- 01 11 08 09 -- -- --
+     <span class="r2txt">12</span> -- 05 A2 04 0D -- -- --
+     <span class="r2txt">13</span> -- 07 12 15 <span class="bgtext s0txt">00</span> -- -- --
+     <span class="r1txt">14</span> -- 07 1A 1C 12 -- -- --
+     <span class="r1txt">15</span> -- 05 20 19 09 -- -- --
+
+<pre class="menu bgtxt rwback">
+P G 
+SCPI
+TT  
+</pre>
+<pre class="note n1 rwback bgtxt">  </pre>
+<pre class="note n2 rwback bgtxt">
+F 
+ 2
+07
+</pre>
+<pre class="note n3 rwback bgtxt">  </pre>
+<pre class="note n4 rwback bgtxt">  </pre>
+<pre class="note n5 rwback bgtxt">
+C 
+ 4
+0D
+</pre>
+<pre class="note n6 csback bgtxt">  </pre>
+<pre class="note n7 rwback bgtxt">  </pre>
+<pre class="note n8 rwback bgtxt">  </pre>
+</pre>
+
+ </div>
+    <textarea>
+    </textarea>
+  </div>
+</body>
+</html>
